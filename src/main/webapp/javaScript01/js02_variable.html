@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>** JavaScript Variable **</title>
+<script>
+// Test1. 변수의 선언과 출력
+	var a;
+	a=100; // 정수
+	var b="JavaScript"; // 문자
+	var c=12.345; d=12345;
+	document.write("Test1.1 Print a,b,c,d =>"+a+", "+b+", "+c+", "+d+"<br>");
+// Test2. 기본자료형 변수의 특징과 출력	
+	b=200;
+	document.write("Test2.1 Print a,b,c,d =>"+a+", "+b+", "+c+", "+d+"<br>");
+	document.write("Test2.2 Print 문자연산 a+b =>"+a+b+"<br>"); // 문자열 연산 -> 100200
+	document.write("Test2.3 Print 산술연산 a+b =>"+(a+b)+"<br>"); // 산술 연산 -> 300
+// Test3. 다양한 자료형
+	var n1=100, n2=123.456;
+	var b1=(20>30), b2=(20>10);
+	document.write("Test3 Print 다양한 자료형 n1,n2,b1,b2=>"+n1+", "+n2+", "+b1+", "+b2+"<br>");
+// Test4. 객체(Object)
+//	=> 정의 와 사용
+	var student={
+		sno:21,
+		sname:'admin',
+		sex:'남'
+	} 
+	document.write("Test4 Student sno => "+student.sno+"<br>");
+	document.write("Test4 Student sname => "+student.sname+"<br>");
+	document.write("Test4 Student sex => "+student.sex+"<br>");
+// Test5. 문자열 함수
+	var s="HeLLo JavaScript love !!!";
+	document.write("Test5.1 s.length : "+s.length+"<br>");
+	document.write("Test5.2 s.charAt(4) : "+s.charAt(4)+"<br>"); // index=0 부터: o
+	document.write("Test5.3 s.replace('L','bbb') : "+s.replace('L','bbb')+"<br>");
+	// Hebbblo JavaScript Love !!! => 첫번째 l 만 적용됨, 해결 
+	// => 정규식 적용 : /문자/ , g 해당되는 모든문자에 적용, i 대소문자 모두적용 
+	document.write("Test5.3 s.replace 정규식1 : "+s.replace(/l/g,'bbb')+"<br>");
+	document.write("Test5.3 s.replace 정규식2 : "+s.replace(/l/gi,'bbb')+"<br>");
+	document.write("Test5.3 s.replace 정규식3 : "+s.replace(/l/i,'bbb')+"<br>");
+	document.write("Test5.4 s.toUpperCase() : "+s.toUpperCase()+"<br>");
+// Test6. 숫자 함수
+// 6.1) 숫자에 ',' 넣기 (숫자->문자)
+// => toLocaleString('en') : Number와 Date Type의 내장함수이며, 
+//	    인자 ('en')로 들어온 지역의 숫자 포맷으로 숫자가 표기되며 뒤에 시스템에 따라서 소숫점이 표시될수 있음.
+//	    만약 지역값을 주지 않으면 해당 시스템의 지역값에 따라 표기됨
+//	    - 소수점 이하 제거기능 추가 .split(".")[0]	
+	var n=1234567.899;
+	document.write("Test6.1 ,넣기 : "+ Number(n).toLocaleString('en')+"<br>");
+	document.write("Test6.1 ,넣기 split : "+ Number(n).toLocaleString('en').split(".")[0]+"<br>");
+// 6.2) ',' 제거하기 (문자->숫자)
+// => 문자 함수의 replace("," , "")   를 이용	
+	var s="1,234,567" ;
+	document.write("Test6.2 ,제거 : "+s.replace("," , "")+"<br>");
+	// => 첫번째 , 만 제거됨 : 정규식이 필요함
+	document.write("Test6.2 ,제거 [정규식] : "+s.replace(/,/g , "")+"<br>");
+
+</script>
+</head>
+<body>
+<hr><h2><pre>
+** JavaScript Variable **
+
+1. 기본자료형 변수의 선언과 출력
+	-> Type 없이 var 로 선언하며 대입되는 값에 따라 타입이 결정됨.
+	-> var 선언 없이도 사용가능
+
+2. 기본자료형 변수의 특징과 출력
+
+3. 다양한 자료형
+=> 문자, 정수, 실수, Boolean
+
+4. 객체(Object)
+=> 다양한 타입의 자료를 묶은 덩어리
+
+5. 문자열 함수
+
+6. 숫자 함수
+=> 숫자에 ',' 넣기 와 ',' 제거하기
+</pre></h2>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>** 조건문: if else, switch case **</title>
+<script>
+// Test1. 기본구문
+	if (1000 < 100) alert("** True **");
+	else alert("** False **");
+// Test2. if else if...
+	var now = new Date();
+	var hh = now.getHours();
+	if (hh<6) alert("~~~ 쿨 쿨 꿈나라 ~~");
+	else if (hh<8) alert("~~~ 아침먹고 학원가기 ~~");
+	else if (hh<13) alert("~~~ 열심히 오전 수업 ~~");
+	else if (hh<14) alert("~~~ 맛있는 점심식사 ~~");
+	else if (hh<18) alert("~~~ 더열심히 오후 수업 ~~");
+	else alert("~~~ 신나는 자유 시간 !!! ~~");
+	
+// Test3. 중첩구문
+// => 위를 중첩 if 로 변경하기 
+	if (hh<6) alert("~~~ 쿨 쿨 꿈나라 ~~");
+	else {  //1
+	  if (hh<8) alert("~~~ 아침먹고 학원가기 ~~");
+	  else { //2
+	    if (hh<13) alert("~~~ 열심히 오전 수업 ~~");
+	    else { //3
+	      if (hh<14) alert("~~~ 맛있는 점심식사 ~~");
+	      else { //4
+	    	if (hh<18) alert("~~~ 더열심히 오후 수업 ~~");
+	    	else alert("~~~ 신나는 자유 시간 !!! ~~");
+	      } //4
+	    } //3  
+	  } //2
+	} //1
+	
+// Test4. 복합구문
+// => if else / switch case
+// => Date 에서 윌을 가져와서  alert 로 계절 출력하기
+// => 봄:3,4,5  여름:6,7,8  가을:9,10,11  겨울:12,1,2
+// => 집합연산자 : &&, ||, !
+
+// 4.1) if else if
+	var mm=now.getMonth()+1; 
+	// 달의 경우에는 +1 을 해야 정확한 달이 됨.
+	if (mm==3 || mm==4 || mm==5) alert("~~ 꽃피는 봄 ~~");
+	//else if ( mm>=6 && mm<=8 ) alert("~~ 무더운 여름 ~~"); 
+	//  6 <= mm <= 8 : XXXXX
+	else if ( mm==6 || mm==7 || mm=="8" ) alert("~~ 무더운 여름 ~~"); 
+	// == 에서는 Type 비교 하지 않으므로 8월 적용됨.  
+	else if ( mm>=9 && mm<=11 ) alert("~~ 풍성한 가을 ~~");
+	else alert("~~ 눈내리는 겨울 ~~");
+	
+// 4.2) prompt Dialog 로 달을 입력받아 계절 출력하기
+// => switch case 로
+	mm = prompt("Test4.2) 달을 입력 하세요 (1~12) ~~", mm);
+	
+	// 입력오류 확인
+	if (mm<1 || mm>12) {
+		alert("~~ 입력값 오류, 1~12 내에서 입력하세요 ~~");
+		mm = prompt("마지막 기회: 달을 입력 하세요 (1~12) ~~", mm);
+	}
+	
+	switch(parseInt(mm)) {
+	// switch(mm){ //-> case 에서는 Type 비교를 함.
+	case 3:
+	case 4:
+	case 5: alert("~~ 꽃피는 봄 ~~"); break; 
+	case 6: case 7: case 8: alert("~~ 무더운 여름 ~~"); break; 
+	case 9: case 10: case 11: alert("~~ 풍성한 가을 ~~"); break; 
+	//case 12,1,2: alert("~~ 눈내리는 겨울 ~~"); break; 
+	// => 오류, 그러나 마지막값(2) 은 인식됨.
+	case 12: case 1: case 2: alert("~~ 눈내리는 겨울 ~~"); break; 
+	default : alert("Switch Error: 지구에는 없는 계절 입니다. ~~");
+	} //switch
+
+
+
+
+</script>
+</head>
+<body>
+<pre><h3>
+** 조건문: if else, switch case **
+
+1. 기본구문
+=> if else, switch case
+
+2. if else if...
+
+3. 중첩구문
+
+4. 복합구문
+=> if else / switch case
+</h3></pre>
+</body>
+</html>

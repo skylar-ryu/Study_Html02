@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>** inCheck04: JQ button JoinForm **</title>
+<script src="../myLib/jquery-3.2.1.min.js"></script>
+<script>
+//=> JQuery 방식으로 type button 활용 
+//=> input Tag type button 클릭시, click 이벤트 활용 
+//=> 오류 있으면 : Message 출력 ( 이벤트 무효화 필요없음 -> e.preventDefault() 필요없음 )
+//       없으면 : submit 이벤트 실행 ( form Tag 의 submit() 메서드 실행)
+
+//$(document).ready(function(){
+$(function(){	
+	
+	$('#finish').click(function(e) {
+		// 1) value 가져오기
+		var id=$('#id').val() ;
+		var password=$('#password').val() ;
+		var name=$('#name').val() ;
+		var birthd=$('#birthd').val() ;
+		var point=$('#point').val() ;
+		var weight=$('#weight').val() ;
+		
+		// 2) 무결성 점검
+		// => 정규식 과 String 의 replace 메서드 활용
+		//ID : 길이4 이상, 영문자,숫자 로만 구성
+		if (id.length<4) {
+			alert(' ~~ id 는 4글자 이상  입니다 ~~');
+			$('#id').focus();
+			return;
+		}else if (id.replace(/[a-z.0-9]/gi,'').length > 0) {
+			alert(' ~~ id 는 영문자, 숫자로만 입력 하세요 ~~');
+			$('#id').focus();
+			return;
+		}
+		//password : 길이4이상, 영문자,숫자와 특수문자는 반드시 1개 이상 포함할것
+		// => 특수문자 : HTML 특수문자 리스트표 참고 (http://kor.pe.kr/util/4/charmap2.htm)
+		if (password.length<4) {
+			alert(' ~~ password 는 4글자 이상  입니다 ~~');
+			$('#password').focus();
+			return;
+		}else if (password.replace(/[!-*]/gi,'').length >= password.length ) {
+			alert(' ~~ password 는 특수문자가 반드시 1개 이상 포함되어야 합니다 ~~');
+			$('#password').focus();
+			return;
+		}else if (password.replace(/[a-z.0-9.!-*]/gi,'').length > 0) {
+			alert(' ~~ password 는 영문자, 숫자, 특수문자 로만 입력 하세요 ~~');
+			$('#password').focus();
+			return;
+		}
+		//Name: 길이 2이상, 영문 또는 한글로 만 입력
+		if (name.length<2) {
+			alert(' ~~ name 은 2글자 이상  입니다 ~~');
+			$('#name').focus();
+			return;
+		}else if (name.replace(/[a-z.가-힣]/gi,'').length > 0) {
+			alert(' ~~ name 은 한글 또는 영문 으로만 입력 하세요 ~~');
+			$('#name').focus();
+			return;
+		}	
+		//Birthd: 길이 10 인지 
+		if (birthd.length != 10) {
+			alert(' ~~ 생년월일을 정확하게 입력 하세요 (yyyy-mm-dd) ~~');
+			$('#birthd').focus();
+			return;
+		}
+		//Point: 정수
+		// => 숫자확인 : jQuery 함수 isNumeric
+		// => . 이 포함되면 안됨
+		if ( $.isNumeric(point)==false ) {
+			alert(' ~~ point는 숫자로만 정확하게 입력 하세요 ~~');
+			$('#point').focus();
+			return;
+		}else if (point.replace(/[.]/g,'').length < point.length) {
+			alert(' ~~ point는 정수로만 정확하게 입력 하세요 ~~');
+			$('#point').focus();
+			return;
+		}
+		//Weight: 실수
+		// => 숫자확인 : jQuery 함수 isNumeric
+		// => 구간확인 : 20 ~ 200 
+		
+		// var weight=document.getElementById('weight').value ;
+		//     weight='55';       weight = 55;
+		if ( $.isNumeric(weight)==false ) {
+			alert(' ~~ weight는 숫자로만 정확하게 입력 하세요 ~~');
+			$('#weight').focus();
+			return;
+		}else if (parseFloat(weight) < 20 || parseFloat(weight) > 200 ) {
+		// }else if (Number(weight) < 20 || Number(weight) > 200 ) {	
+			alert(' ~~ weight 값이 범위를 벗어납니다 ~~');
+			$('#weight').focus();
+			return;
+		}	
+		
+		// 오류 확인 완료 => submit 진행
+		alert('~~ 입력 완료 , 회원 가입 됩니다. ~~');	
+		$('#myForm').submit();
+		
+	}); //submit
+}); //ready
+
+</script>
+</head>
+<body>
+<pre><h2>** input Tag 의 입력값 무결성 점검_JQ, button **</h2>
+=> button type 은 submit 기능이 없으므로 
+=> 오류가 있을때,이벤트 무효화는 필요 없지만  
+=> 성공시에 submit 을 진행  ( $('form').submit(); ) 
+</pre>
+<hr>
+<h2>** inCheck04: JQ button JoinForm **</h2>
+<table><form action="join" method="get" id="myForm">
+	<tr height="40"><td bgcolor="Lavender">I  D</td>
+		<td><input type="text" name="id" id="id" size="20"></td>
+	</tr>
+	<tr height="40"><td bgcolor="Lavender">Password</td>
+		<td><input type="password" name="password" id="password" size="20"></td>
+	</tr>
+	<tr height="40"><td bgcolor="Lavender">Name</td>
+		<td><input type="text" name="name" id="name" size="20"></td>
+	</tr>
+	<tr height="40"><td bgcolor="Lavender">Birthday</td>
+		<td><input type="date" name="birthd" id="birthd"></td>
+	</tr>
+	<tr height="40"><td bgcolor="Lavender">Point</td>
+		<td><input type="text" name="point" id="point" size="20"></td>
+	</tr>
+	<tr height="40"><td bgcolor="Lavender">Weight</td>
+		<td><input type="text" name="weight" id="weight" size="20"></td>
+	</tr>
+	<tr height="40"><td></td>
+		<td><input type="button" value="가입" id="finish">&nbsp;&nbsp;
+			<input type="reset" value="취소">	</td>
+	</tr>
+</form></table>
+</body>
+</html>

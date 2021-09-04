@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>** Id, Class, Hover **</title>
+<script src="../myLib/jquery-3.2.1.min.js"></script>
+<script>
+//JQuery hover() : mouse Hover 이벤트 처리 메서드
+//=> hover(f1 , f2) : f1 마우스hover시 , f2 마우스out시 실행
+$(function(){
+	// 1. id 에 addClass 
+	// => 스타일에 #box.ho 없는경우 : .ho 의 속성중 없는 속성만 적용됨.
+	// => 스타일에 #box.ho 있는경우 : #box.ho 이 적용됨.
+	$('#box').hover(function() {
+		$('#box').addClass("ho");
+	}, function() {
+		$('#box').removeClass("ho");
+	});
+	
+	// 2. class 에 addClass  
+	// => 추가된 ho2 가 적용됨.
+	$('.ho').hover(function() {
+		$('.ho').addClass("ho2");
+	}, function() {
+		$('.ho').removeClass("ho2");
+	});
+	
+}); //ready
+
+</script>
+<style>
+	#box {width:100px; height:100px; background-color:red;}
+	.ho  {width:200px; height:200px; background-color:blue; border-radius:50px;}
+	/* #box.ho {background-color:green; border-radius:50px;} */
+	.ho2 {width:200px; height:200px; background-color:yellow; border-radius:100px;}
+</style>
+</head>
+<body>
+<h2>** Id, Class, Hover **</h2>
+<div id="box"></div>
+<div id="box" class="ho"></div>
+<div class="ho"></div>
+</body>
+</html>

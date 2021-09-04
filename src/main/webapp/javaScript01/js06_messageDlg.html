@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>** Message Dialog **</title>
+<link rel="stylesheet" type="text/css" href="../myLib/myStyle.css">
+<script>
+function confirmTest() {
+	if (confirm("정말 탈퇴 하십니까 ? (Yes:확인 / No:취소)")) {
+		alert("탈퇴가 잘 되었습니다 ~~") ;
+		//document.write("탈퇴가 잘 되었습니다 ~~"); //화면 Clear
+	}else {
+		alert("탈퇴가 취소 되었습니다 ~~") ;
+		//document.write("탈퇴가 취소 되었습니다 ~~"); //화면 Clear
+	}
+}
+
+function promptTest() {
+	var s=prompt("점심 메뉴는 무엇을 원하시나요 ~~");
+	if (s=='') alert("다이어트 하시네요 => 입력없이 확인 눌렀네요 ~~");
+	else if (s==null) alert("무관심 인가요 => 취소 또는 바로 Dialog 를 닫았네요 ~~");
+	else alert("** 선택 메뉴 : "+s) ;
+	
+	var age=prompt("나이를 입력 하세요 ~~",10);
+	if (age>20) alert(" 당신은 로그인 가능 합니다 ~~");
+	else alert("당신은 부모의 동의가 필요 합니다 ~~");
+}
+</script>
+</head>
+<body>
+<h2>** Message Dialog Test **</h2>	
+<br>
+<button onclick="alert(' alert : Message Dialog Test 중 ~~')">alertTest</button>
+<br>
+<button onclick="confirmTest()">confirm</button>
+<br>
+<button onclick="promptTest()">prompt</button>
+</body>
+</html>

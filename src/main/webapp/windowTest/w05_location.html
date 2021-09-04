@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>** window.location Test **</title>
+<script src="../myLib/jquery-3.2.1.min.js"></script>
+<script>
+	function load() {
+		// ** select 의 value 접근
+		// 1) index 를 이용해서 접근
+		//var s=document.getElementById('sel'); // select 를 전달
+		//window.location=s.options[s.selectedIndex].value;
+		// 2) JS
+		// window.location=document.getElementById("sel").value;
+		// 3) JQ
+		//window.location=$('#sel').val();
+		//=> href='url' : 화면전환 (히스토리에 남음)
+		//   location.href='../javaScript04/snowVillage.html' 
+		
+		location.replace($('#sel').val());
+		//=> 히스토리에 기록안됨 -> 이전페이지로 이동불가능 
+		
+	} //load
+</script>
+
+</head>
+<body>
+<pre>
+<h2>** window.location Test **</h2>
+
+=> 내장함수 location (jq02_03countDown.html 참고)
+	-> href : 화면전환 (히스토리에 기록 -> 이전페이지로 이동가능)
+	-> replace('...') : 화면전환 (히스토리에 기록안됨 -> 이전페이지로 이동불가능)
+	-> reload() : 새로고침 (f5)
+
+</pre>
+<hr>
+* url 선택 : 
+<select id="sel">
+	<option value="https://www.naver.com" selected>Naver
+	<option value="http://www.disneyworld.com">Disney
+	<option value="https://www.google.com">Google
+</select>&nbsp;&nbsp;
+<button onclick="load()">연결</button>
+</body>
+</html>

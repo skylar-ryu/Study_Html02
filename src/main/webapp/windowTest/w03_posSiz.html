@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>** Window Size, Position Test **</title>
+<script>
+	var testWin = null;
+	function winOpen() {
+		testWin = open('snowVillage.html','myWindow',
+				'left=100,top=100,width=400,height=300');
+	} //winOpen
+</script>
+</head>
+<body>
+<h2>** Window Size, Position Test **</h2>
+=> This_Window Test<br>
+=> 적용 안됨
+<button onclick="self.moveBy(-10,0)">Left</button>
+<button onclick="self.moveBy(10,0)">Right</button>
+
+<br><hr><br>
+<button onclick="winOpen()">TestWindow Open</button>
+<br>
+<button onclick="testWin.moveBy(-10,0)">Left</button>
+<button onclick="testWin.moveBy(10,0)">Right</button>
+<button onclick="testWin.moveBy(0,-10)">Up</button>
+<button onclick="testWin.moveBy(0,10)">Down</button><br>
+<button onclick="testWin.resizeBy(10,10)">SizeUp(+)</button>
+<button onclick="testWin.resizeBy(-10,-10)">SizeDown(-)</button>
+</body>
+</html>

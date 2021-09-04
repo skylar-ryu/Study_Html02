@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>** animate & fade & slide 효과 **</title>
+<script src="../myLib/jquery-3.2.1.min.js"></script>
+<script>
+$(function(){
+	
+	// 1. animate({속성들} , 시간_int)
+	// => 시간 단위 : 1/1000 초
+	// => 속성: opacity, width, height, left, top,
+	//         right, bottom, margin, padding
+	//         위 외에 backgroundColor 는 추가 라이브러리 필요함
+	// => 지정된 시간내에 속성의 값을 변경시켜줌
+	$('#aa').css({
+		width:200,
+		height:100,
+		left:10,
+		top:10,
+		color:'white',
+		backgroundColor:'red',
+		position: 'absolute',
+		opacity: '0.2'
+	}).animate({
+		width:'-=150',
+			// width: 50 => 직접 수치를 입력해도 되고,
+			// 상대수치를 '-=150' 사용하는것도 가능.
+		height:'+=200',
+		left:'+=350',
+		top:150,
+		opacity: '0.9'
+	}, 3000);
+	
+	// 2. 효과 메서드
+	$('#ff').click(function(){
+		$(this).css('color','gray');
+		$('#img1').fadeToggle('slow');
+	}); //ff_click
+	
+	$('#ss').click(function(){
+		$(this).css('color','gray');
+		$('#img2').slideToggle('slow');
+		$('#img3').slideToggle('normal');
+		$('#img4').slideToggle('fast');
+	}); //ss_click
+	
+	$('#tt').click(function(){
+		$(this).css('color','gray');
+		$('#img5').toggle('slow');
+	}); //tt_click	
+	
+	// ** 효과 ALL Test
+	$('button').click(function(){
+		$('#img1').fadeToggle('slow');
+		$('#img2').slideToggle('slow');
+		$('#img3').slideToggle('normal');
+		$('#img4').slideToggle('fast');
+		$('#img5').toggle('slow');
+	}); // button_click
+	
+}); //ready		
+</script>
+</head>
+<body>
+<h2>1. Animate </h2>
+<div id="aa">Animate Test</div>
+
+<button>효과 ALL Test</button>
+
+<h2 id="ff">2. Fade toggle image </h2>
+<img src="../image/a1.png" id="img1" width=100 height=100><br>
+
+<h2 id="ss">3. Slide toggle image </h2>
+<img src="../image/a2.png" id="img2" width=100 height=100>&nbsp;
+<img src="../image/a3.png" id="img3" width=100 height=100>&nbsp;
+<img src="../image/a4.png" id="img4" width=100 height=100><br>
+
+<h2 id="tt">4. toggle image </h2>
+<img src="../image/a5.png" id="img5" width=100 height=100><br>
+</body>
+</html>

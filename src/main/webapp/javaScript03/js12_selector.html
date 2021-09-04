@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>** Selector : id, tag, tag all ** </title>
+<script>
+window.onload=function() {
+	// 1. id
+	var h=document.getElementById('header');
+	h.style.color="yellow";
+	h.style.backgroundColor="black";
+
+	// 2. tag 
+	var t=document.querySelector("h3");
+	t.style.color="pink";
+	t.style.backgroundColor="navy";
+	
+	// 3. tag all
+	// => 모두 선택해서 배열로 리턴
+	var a = document.querySelectorAll("h4");
+	
+	
+
+}//onload
+
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

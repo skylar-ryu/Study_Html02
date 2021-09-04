@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>** Style 처리 하는 JQuery 메서드 css **</title>
+<script src="../myLib/jquery-3.2.1.min.js"></script>
+<script>
+$(function(){
+	// 1. css 활용
+	// 1.1) 하나씩 지정 : 매개변수 2개
+	// => selector 에 해당하는 모든 Tag 에 지정됨
+	//    비교: 값을 전달받아야 하는 경우 (매개변수 1개) 는 첫번째 Tag 에만 적용
+	$('h3').css('color','blue');
+	
+	// 1.2) 한번에 여러속성 지정
+	$('h4').css({
+		color:'green',
+		backgroundColor:'yellow' 
+	});	
+	// attr 메서드를 활용해서 style 속성의 값을 지정
+	// => 속성의 값 정의시 { ..... } 사용하지 않음에 주의 (inLine Style 도 동일)
+	$('h4').attr('style','color:aqua;background-color:gray;');
+	
+	$('.box').css({
+		float: "left",
+		margin: "10px",
+		width: "100px",
+		height: "100px",
+		backgroundColor: "orange"
+	});
+	
+	// 1.3) 익명함수 사용하기
+	// => Color Gradition
+	var output='';
+	for (var i=0; i<256; i++) {
+		output+='<div></div>';
+	}
+	document.body.innerHTML=output;
+	$('div').css({
+		height: "2px",
+		backgroundColor: function(i) {
+				return 'rgb('+i+','+30+','+i+')';
+				// rgb(0,256,256)
+		}
+	});
+	// ** JS 와의 차이점 (복수의 Tag 선택시)
+	// => JS 의 document.querySelectorAll('h4') 은
+	//	   모두 선택해서 배열로 처리해 주어야 함...
+	// => jQuery 는 선택자에 해당하는 Tag가 여러개인 경우 알아서 차례로 가져옴
+	
+}); //ready
+
+</script>
+</head>
+<body>
+<h3>** Style 처리 메서드 css Test**</h3>
+<h4>-> 1) css 활용1</h4>
+<h4>-> 2) css 활용2 => box</h4>	
+<h4>-> 3) Color Gradation</h4>
+<h4>  	  css 메서드 속성값에 function 적용</h4> 
+<hr>
+<div class="box">Box1</div>
+<div class="box">Box2</div>
+<div class="box">Box3</div>
+<div id="ttt"  style="width:100px;height:50px;background-color:pink">Style Test</div>
+<hr>
+</body>
+</html>

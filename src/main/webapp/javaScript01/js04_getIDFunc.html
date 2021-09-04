@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>** getID & function **</title>
+<script>
+// Test1. Tag 전달 : getElementById
+	function changeColor() {
+		var t = document.getElementById("test1") ;
+		
+	     /* if (t.style.color=="blue") {
+	         t.style.color = "red";
+	      }else {
+	         t.style.color = "blue";
+	      } 
+	  	// ** 삼항식으로 적용해보기  
+		var s = (t.style.color=="blue") ? "red" : "blue" ; 
+		t.style.color = s;
+	   */
+		(t.style.color == "blue") ? t.style.color="red" : t.style.color="blue" ;
+	} 
+// Test2. input Tag 의 value 전달	
+// => input Tag n1,n2 에 입력된 값을 받아서, add 하고
+//    결과를 n3 에 표시
+	function adder() {
+		var num1 = document.getElementById("n1").value; // 문자형 num1="123"
+		var num2 = document.getElementById("n2").value; // 문자형
+		document.getElementById("n3").value = parseInt(num1) + parseInt(num2);
+	}
+	
+// Test3. Image 의 src 속성 Change
+	function changeImage() {
+		//if (document.getElementById("img").src == "../image/yyy.gif")
+		// src 속성의 값을 비교하는 match 를 이용해야함	
+		if (document.getElementById("img").src.match("../image/yyy.gif"))
+			 document.getElementById("img").src = "../image/xxx.gif" ; 
+		else document.getElementById("img").src = "../image/yyy.gif" ; 
+	}
+// Test4. html Tag에 Contents 출력하기
+
+// ** Date : javascript 내장객체
+// => Date 객체는 날짜와 시간(년,월,일,시,분,초, 밀리초(천분의 1초(millisecond, ms)))을 위한
+//    메소드를 제공하는 빌트인 객체이면서 생성자 함수이다.
+// => Date 생성자 함수로 생성한 Date 객체는 내부적으로 숫자값을 갖는다. 
+//    이 값은 1970년 1월 1일 00:00(UTC)을 기점으로 현재 시간까지의 밀리초를 나타낸다.
+// => UTC(협정 세계시: Coordinated Universal Time)는 
+//    GMT(그리니치 평균시: Greenwich Mean Time)로 불리기도 하는데 
+//    UTC와 GMT는 초의 소숫점 단위에서만 차이가 나기 때문에 일상에서는 혼용되어 사용된다. 
+//    기술적인 표기에서는 UTC가 사용된다.
+// => KST(Korea Standard Time)는 UTC/GMT에 9시간을 더한 시간이다. 
+//    즉, KST는 UTC/GMT보다 9시간이 빠르다. 
+//    예를 들어, UTC 00:00 AM은 KST 09:00 AM이다.
+
+// => 현재의 날짜와 시간은 자바스크립트 코드가 동작한 시스템의 시계에 의해 결정된다. 
+//    시스템 시계의 설정(timezone, 시간)에 따라 서로 다른 값을 가질 수 있다.
+
+// ** Date 객체를 만드는 방법
+// => https://blog.naver.com/lyh_1031/222224126235
+// => new Date() : 현재 날짜 시간을 저장한 객체가 만들어집니다.
+// => new Date('날짜 문자열') : 해당 특정 날짜와 시간을 가리키는 객체가 만들어집니다.
+// => new Date("밀리초") : 1970년 1월 1일 0시~ 해당 밀리초만큼 지난 날짜 객체가 만들어 집니다.
+// => new Date(년,월,일,시,분,초,밀리초) : 해당 특정 날짜 시간을 가리키는 객체가 만들어집니다.
+
+	function setClock() {
+		var now = new Date();
+		var t = "Now: "
+			+now.getFullYear()+"년"+(now.getMonth()+1)+"월"+now.getDate()+"일_"
+			+now.getHours()+":"+now.getMinutes()+":"+now.getSeconds() ;
+		document.getElementById("clock").innerHTML=t;	
+		// 시계처럼 표시하려면 1초 단위로 재호출 해야함
+		setTimeout("setClock()",1000) ; // 실행단위: 1/1000 초
+	}
+
+</script>
+</head>
+<body onload="setClock()">
+<h2><pre>
+** getID & function **
+
+1. Tag 전달 : getElementById
+<span id="test1">getElementById Test</span>
+<span id="test1">ID 중복 Test</span>
+=> Id 중복시 실행은 되지만, 첫번째 Id 만 인식함
+<button onclick="changeColor()">Click, ChangeColor</button>
+
+2. input Tag 의 value 전달
+<b>** Adder Test **</b>
+number1 : <input type="number" id="n1" value="123">
+number2 : <input type="number" id="n2" value="456">
+*Result : <input type="number" id="n3">
+<button onclick="adder()">ADD Test</button> 
+
+3. Image 의 src 속성 Change
+<img src="../image/xxx.gif" id="img" width="100" height="200">
+<button onclick="changeImage()">Click, ChangeImage</button>
+
+4. html Tag에 Contents 출력하기
+=> setClock()
+=> 현재 시간 표시하기 (시계처럼)
+=> 문서 실행과 동시에 자동실행 되도록 ...
+   ( body 의 onload 이벤트를 이용) 
+
+<span id="clock" style="color:brown">Now</span>   
+
+
+</pre></h2>
+
+</body>
+</html>

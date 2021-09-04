@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>** Id, Class, Hover Test2  **</title>
+<script src="../myLib/jquery-3.2.1.min.js"></script>
+<script>
+//JQuery hover() : mouse Hover 이벤트 처리 메서드
+//=> hover(f1 , f2) : f1 마우스hover시 , f2 마우스out시 실행
+
+//** addClass, removeClass 를 css 메서드 적용으로 변경하기
+$(function(){
+	$('#box').hover(function() {
+		$('#box').css({
+			width:100,
+			height:100,
+			borderRadius:50,
+			backgroundColor:"green"
+		});
+	}, function() {
+		$('#box').css({
+			width:100,
+			height:100,
+			borderRadius:0,
+			backgroundColor:"red"
+		});
+	});
+	
+}); //ready
+
+</script>
+<style>
+	#box {width:100px; height:100px; background-color:red;}
+</style>
+</head>
+<body>
+<h2>** Id, Class, Hover **</h2>
+=> css 메서드로 처리하기
+<div id="box"></div>
+</body>
+</html>

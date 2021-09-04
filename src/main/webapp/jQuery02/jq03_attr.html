@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>** Tag 의 속성(Attribute) 처리 메서드 attr **</title>
+<script src="../myLib/jquery-3.2.1.min.js"></script>
+<script>
+// ** jQurey 의 메서드는
+// => 매개변수 갯수 1, 2,....
+//    1 (속성명) : 속성의 값을 return
+//	  2	(속성명,속성의값)
+//    여러개 ({....}) : 여러 속성의 값을 지정
+
+// $(document).ready(function(){
+$(function(){	
+	//1. 속성값 가져오기
+	// => 매개변수 1개(속성명) 사용하면 해당속성의 값 return
+	
+	var s=$('script').attr("src");
+	console.log("Test =>"+s);
+/* 	alert("script 의 src => "+s);
+	alert("img 의 id => "+$('img').attr('id')); 
+	alert("img 의 class => "+$('img').attr('class'));  
+	// => 첫번째 img Tag 의 속성값 가져옴.
+	//    return 값이 있는 경우에는 첫번째 Tag 만 적용 
+	//    그러나 값을 지정하는 경우에는 모든 Tag 에 적용 (매개변수 2개 이상인 경우 ..)
+	// => 그러므로 class 는 undefined
+	alert("img 의 class m5 => "+$('.m5').attr('class'));   */
+	
+	//2. 속성의 값 지정하기
+	//2.1) 하나씩 지정 (매개변수 갯수2개 사용)
+	$('#m1').attr('src','../image/aaa.gif');
+	$('#m1').attr('width',100);
+	$('#m1').attr('height',150);
+	
+	//2.2) 한번에 여러속성 지정 ({......})
+	$('#m2').attr({
+			src: "../image/bbb.gif",
+			width: 100,
+			height: 150
+	}); //attr_m2
+	
+	//2.3) 속성의 값으로 익명함수 사용하기
+	// => 익명함수 function(i){ .... }
+	// => 매개변수
+	//		- 필요없으면 사용하지 않아도 됨
+	//		- 필요시에 적용해서 사용가능
+	//		- 매개변수명은 임의의 알파벳 사용가능 (i,j,k,l....)
+	//		- 매개변수의 값은 호출시마다 0 부터 1씩 증가하면서 순차적으로 적용
+	// => 익명함수의 return 값이 속성의 값으로 전달됨
+	// ** id 에 적용 
+	$('#m3').attr({
+			src:function(i){
+					var size=(i+2)*100;
+					return 'http://placehold.it/'+size+'x100';
+					// http://placehold.it/200x100
+				}
+	}); //attr_m3
+	
+	// ** class 에 적용
+	// => 매개변수 j 의 값이 호출시마다 0,1,2 ... 순차적으로 자동적용됨.
+	$('.m5').attr({
+			src:function(j){
+				var size=(j+2)*100;
+				return 'http://placehold.it/'+size+'x100';
+				}
+	}); //attr_m5
+	
+	// ** 매개변수 없이 사용하기
+	// => id 에 적용
+	$('#m4').attr({
+			src:'../image/ccc.gif',
+			width:function(){
+				var size=3;
+				return size*50;
+			},
+			height:100
+	}); //attr_m4
+	
+	// => class 에 적용
+	$('.m5').attr({
+			src:'../image/eee.gif',
+			width:function(w) {
+				var size=(w+1);
+				return size*50;
+			},
+			height:100
+	}); //attr_m5
+	
+	// *** prop() Test
+	alert("attr 1 => "+$('#propTest1').attr('href')+"\n"
+		  + "prop 1 => "+$('#propTest1').prop('href'));
+	alert("attr 2 => "+$('#propTest2').attr('href')+"\n"
+		  + "prop 2 => "+$('#propTest2').prop('href'));
+	
+}); //ready
+
+</script>
+</head>
+<body>
+<h2>** Tag 의 속성(Attribute) 처리 메서드 attr **</h2>
+<pre>
+1. attr() 메서드
+=> Dom객체의 Node 의 속성(Attribute) 조작 : Tag의 속성에 반영
+=> html의 속성에 입력된 값을 제어하는데 이용됨.
+
+2. prop() 메서드
+=> JS 의 객체에 정의된 속성
+   html의 속성의 값이 가지고 있는 본연의 형태를 가져옮
+   ( 해당 Dom을 브라우저에서 동작시키기 위해서는 Object로 할당 하는데,
+     이때 Object 의 Property 값. )   
+   -> 속성의 역할 제어
+   -> Object 의 속성값을 다룰때 주로 이용됨.
+</pre>
+<a id="propTest1" href="#" >propTest1</a>&nbsp;&nbsp;
+<a id="propTest2" href="javascript:;" >propTest2</a>
+
+<hr>
+<img id="m1"><img id="m2">
+<img id="m3"><img id="m4"><br>
+<img class="m5"><br>
+<img class="m5"><br>
+<img class="m5"><br>
+
+</body>
+</html>

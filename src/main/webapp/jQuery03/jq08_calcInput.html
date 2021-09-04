@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>** 내장함수 eval 을 이용한 계산기 (JQuery) **</title>
+<script src="../myLib/jquery-3.2.1.min.js"></script>
+<script>
+//** 과제 
+//1) input Tag 의 value 속성값 
+//=> jQuery 메서드  : val()
+//=> read: val() , write: val('출력내용') 
+//=> JavaScript : value 
+//2) 기능 처리 방식 모두 jQuery 로  (jQuery의 이벤트 와 메서드 )
+//=> input, compute , clear 기능을 jQuery 로 변경 하세요 ~~
+//3) display Tag를 마우스로 클릭하면  alert 로 
+// dispaly의 value 값을 출력하세요
+
+	var expression='' ;
+	$(function(){
+		$('.bt').css('width','50px').click(function() {
+			/* ver01
+			expression+=$(this).html();
+			$('#display').val(expression); */
+			// JavaScript 와 비교
+			// => document.getElementById('display').value=expression
+			// ver02 
+			// => 그려놓은 버튼으로 입력한 값 또는 직접 키보드로 입력한 값도 적용되도록 한것임
+			$('#display').val($('#display').val()+$(this).html()) ;
+			
+			}); // bt_css_click
+		
+		$('#enter').click(function() {
+/* 			var result = eval(expression) ;
+			expression=result ;
+			$('#display').val(result) ; */
+			// 한줄로 처리 가능
+			// => eval($('#display').val()) 에서 
+			//    매개변수를 expression 을 사용하지 않은 이유는 
+			//    직접 키보드로 입력한 값도 적용되도록 한것임
+			//expression=$('#display').val(eval($('#display').val())).val() ;
+			// expression을 사용하지 않으면
+			$('#display').val(eval($('#display').val()));
+		}) ;
+		
+		$('#clear').click(function() {
+			expression="" ;
+			$('#display').val(expression);
+		}); // clear
+		
+/*   		$('#display').click(function() {
+			var s=$('#display').val() ;
+			alert('Display =>'+s);
+		});	// display  */
+		
+		// backSpace 기능 완성하기
+		// => display 의 값을 가져와서 1글자 지우고 다시 출력해줌 
+		// => 찾고, 지우고("") , 출력
+		$('#back').click(function(){
+			//var s=$('#display').val() ;
+			//$('#display').val(s.substr(0, (s.length-1)));
+			
+			// ** JavaScript 
+			var s=document.getElementById('display').value;
+			document.getElementById('display').value=s.substr(0, (s.length-1));
+			
+		}); // backSpace
+	}); // ready
+
+</script>
+</head>
+<body>
+<h3>** eval 을 이용한 계산기_JQuery **</h3>
+<pre>
+=> eval : 문자열을 수식으로 바꾸어서 계산을 해줌
+=> input Tag 의 값처리 
+   JS : document.getElementById('display').value
+   JQ
+    -> read : $('#display').val()
+    -> write: $('#display').val('출력내용')
+</pre>
+<hr>
+* display : <br>
+<input id="display" value="0" size="25">
+<br>
+<button class="bt">7</button>
+<button class="bt">8</button>
+<button class="bt">9</button>
+<button class="bt">/</button><br>
+
+<button class="bt">4</button>
+<button class="bt">5</button>
+<button class="bt">6</button>
+<button class="bt">*</button><br>
+
+<button class="bt">1</button>
+<button class="bt">2</button>
+<button class="bt">3</button>
+<button class="bt">-</button><br>
+
+<button class="bt">0</button>
+<button class="bt">+</button>
+<button class="bt">(</button>
+<button class="bt">)</button><br>
+<button id=clear>Clear</button>
+<button id=enter>Enter</button>
+<button id=back>BackSpace</button>
+
+</body>
+</html>

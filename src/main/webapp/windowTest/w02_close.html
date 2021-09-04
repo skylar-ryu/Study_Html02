@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>** Window Close Test **</title>
+<script>
+	var newWindow =null;
+	function load(url) {
+		newWindow=open(url,'myWin','left=300,top=300,width=500,height=500');
+	} // load
+	function unload() {
+		if (newWindow == null || newWindow.closed) return ; // 윈도우가 없으면 return
+		else newWindow.close(); // 열려있는 윈도우만 close 
+	} //unload
+</script>
+
+</head>
+<body>
+<h2>** Window Close Test **</h2>
+<hr>
+<a href="javascript:load('http://www.disneyworld.com')">New_Window Open [디즈니월드]</a><br>
+<a href="javascript:unload()">New_Window Close</a><br>
+<a href="javascript:window.close()">This_Window Close</a>
+</body>
+</html>

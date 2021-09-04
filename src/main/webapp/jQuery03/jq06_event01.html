@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>** Event Test 01 **</title>
+<script src="../myLib/jquery-3.2.1.min.js"></script>
+<script>
+$(function(){
+	// 1. click
+	$('#cc').click(function(){
+		alert("~~ JQuery Click Event Test !!! ~~");
+	}); //click
+	
+	// 2. hover , this
+	// => hover(f1,f2)
+	//    f1: 마우스 hover , f2: 마우스 out
+	// => $(this) : this 도 선택자로서 현재 select된 객체 자신
+	
+	// ** 과제
+	// => 동일 클래스를 가진 여러 Tag 에 적용
+	// => mouse hover 시에 color를 gray , out 시에는 본래의 color 로
+	// => f1 에서 초기 color 를 보관했다가 f2 에서 사용
+	var c;
+	$('.hh').hover(function(){
+		console.log("$(this) 의 color => "+$(this).css('color'));
+		c = $(this).css('color');
+		$(this).css({
+			color:'gray',
+			background: 'aqua',
+			width:'300px'
+		});
+		
+	}, function(){
+		$(this).css({
+			color:c,
+			background: '',
+			width:''
+		});
+	}); //hover
+	
+}); //ready
+
+</script>
+</head>
+<body>
+<h2>** Event Test 01 **</h2>
+<h2 id="cc" >=> Click</h2>
+<h2 class="hh" style="color:red">=> Hover01, this</h2>
+<h2 class="hh" style="color:green">=> Hover02, this</h2>
+<h2 class="hh" style="color:blue">=> Hover03, this</h2>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>** 내장함수 eval 을 이용한 계산기 **</title>
+<script>
+  var expression = '';
+  function input(n) {
+	  expression += n ;
+	  document.getElementById("display").value = expression;
+  }
+  function clearExpression() {
+	  expression = '';
+	  document.getElementById("display").value = expression;
+  }
+  function compute() {
+	  var result = eval(expression);
+	  document.getElementById("display").value = result;
+  }
+</script>
+<style>
+	button { width:50px; }
+</style>
+
+</head>
+<body>
+<h3>** 내장함수 eval 을 이용한 계산기 **</h3>
+=> eval : 문자열을 수식으로 바꾸어서 계산을 해줌
+<hr>
+* display : <br>
+<input id="display" value="0" size="25">
+<br>
+<button onclick="input('7')">7</button>
+<button onclick="input('8')">8</button>
+<button onclick="input('9')">9</button>
+<button onclick="input('/')">/</button>
+<br>
+<button onclick="input('4')">4</button>
+<button onclick="input('5')">5</button>
+<button onclick="input('6')">6</button>
+<button onclick="input('*')">*</button>
+<br>
+<button onclick="input('1')">1</button>
+<button onclick="input('2')">2</button>
+<button onclick="input('3')">3</button>
+<button onclick="input('-')">-</button>
+<br>
+<button onclick="input('0')">0</button>
+<button onclick="input('+')">+</button>
+<button onclick="input('(')">(</button>
+<button onclick="input(')')">)</button>
+<br>
+<button onclick="clearExpression()">Clear</button>
+<button onclick="compute()">Enter</button>
+</body>
+</html>
